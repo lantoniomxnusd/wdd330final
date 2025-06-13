@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #A8D8EA; 
+    --main-accent: #FFF5B7; 
+    --button-color1:#B8E994; 
+    --neutral-color: #FAF9F6; 
+    --anchor-color: #2C3E50; 
+
+    --font-heading: "Montserrat", sans-serif;
+    --font-paragraph: "Nunito", sans-serif;
+}
+
+header,footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--anchor-color);
+    padding: 1rem;
+}
+header{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+body{
+    font-family: var(--font-paragraph);
+    background-color: var(--neutral-color);
+    color: var(--anchor-color);
+}
+h1{
+    color: var(--main-accent);
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    text-align: center;
+}
+
+footer {
+    font-family: var(--font-paragraph);
+    color: var(--main-accent)
+}
