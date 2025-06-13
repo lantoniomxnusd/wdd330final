@@ -15,12 +15,29 @@
     --font-paragraph: "Nunito", sans-serif;
 }
 
+html, body{
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-paragraph);
+    background-color: var(--neutral-color); 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 header,footer {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--anchor-color);
     padding: 1rem;
+    color: var(--main-accent);
 }
 
 header{
@@ -28,21 +45,35 @@ header{
   border-bottom-right-radius: 10px;
 }
 
-html, body{
-    height: 100%;
+footer {
+    font-size:0.9rem;
     font-family: var(--font-paragraph);
-    background-color: var(--neutral-color);
-    color: var(--anchor-color);
-    overflow: hidden;
+    color: var(--main-accent);
 }
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
 
 .gameBoard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
-    max-width: 960px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
+    padding: 1rem 2rem;
+    align-content: center;
+    justify-items: center;
+    max-height: 100%;
+    overflow: auto;
 }
+
 
 h1{
     color: var(--main-accent);
@@ -79,8 +110,4 @@ h1{
     align-items: center;
     justify-content: center;
     height: 100%;
-}
-footer {
-    font-family: var(--font-paragraph);
-    color: var(--main-accent);
 }
