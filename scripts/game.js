@@ -5,6 +5,7 @@ let allWords = [];
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
   allWords = await res.json();
+  populateOptions(); 
 }
 
 function filterWords(mode,selected){
@@ -45,6 +46,33 @@ async function setupGame(){
   })
 }
 
+function populateOptions(){
+  const mode = document.getElementById('mode').value;
+  const optionSelect = document.getElementById('optionSelect');
+  optionSelect.innerHTML = '';
+
+  const unique = allWords.reduce((acc,  word) => {
+    const key = mode === 'unit' ? `${word.level}-${word.unit}` : word.category;
+    if (!acc.includes(key)) acc.push(key);
+    return acc;
+  }, []);
+
+  unique.forEach(value=> {
+    const option = document.createElement('option');
+    option.value = value;
+
+    if (mode === 'unit'){
+      const [level, unit] = value.split('-');
+      option.textContent = `Level ${level} Unit ${unit}`;
+    } else {
+      option.textContent = value [0].toUpperCase() + value.slice(1);
+    }
+
+    optionSelect.appendChild(option);
+  });
+}
+
+document.getElementById('mode').addEventListener('change', populateOptions);
 document.getElementById('startGame').addEventListener('click', setupGame);
 
 loadData();
