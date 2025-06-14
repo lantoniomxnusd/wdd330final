@@ -1,0 +1,42 @@
+[
+  {
+    "word": "pencil",
+    "image": "images/pencil.webp",
+    "level": "1",
+    "unit": "1",
+    "category": "school supplies",
+    "id": "ow-l1u1-01"
+  },
+  {
+    "word": "pen",
+    "image": "images/pen.webp",
+    "level": "1",
+    "unit": "1",
+    "category": "school supplies",
+    "id": "ow-l1u1-02"
+  },
+  {
+    "word": "desk",
+    "image": "images/desk.webp",
+    "level": "1",
+    "unit": "1",
+    "category": "classroom",
+    "id": "ow-l1u1-03"
+  },
+  {
+    "word": "apple",
+    "image": "images/apple.webp",
+    "level": "1",
+    "unit": "2",
+    "category": "food",
+    "id": "ow-l1u2-01"
+  },
+  {
+    "word": "banana",
+    "image": "images/banana.webp",
+    "level": "1",
+    "unit": "2",
+    "category": "food",
+    "id": "ow-l1u2-02"
+  }
+]
