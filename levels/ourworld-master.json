@@ -4,7 +4,7 @@
     "image": "images/pencil.webp",
     "level": "1",
     "unit": "1",
-    "category": "school supplies",
+    "category": "school-supplies",
     "id": "ow-l1u1-01"
   },
   {
@@ -12,7 +12,7 @@
     "image": "images/pen.webp",
     "level": "1",
     "unit": "1",
-    "category": "school supplies",
+    "category": "school-supplies",
     "id": "ow-l1u1-02"
   },
   {

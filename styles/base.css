@@ -19,7 +19,7 @@ html, body{
     height: 100%;
     margin: 0;
     font-family: var(--font-paragraph);
-    background-color: var(----color); 
+    background-color: var(--neutral-color); 
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -45,6 +45,13 @@ header{
   border-bottom-right-radius: 10px;
 }
 
+.header-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 footer {
     font-size:0.9rem;
     font-family: var(--font-paragraph);
@@ -54,9 +61,31 @@ footer {
 main {
     flex: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     padding: 0;
+}
+
+.instructions {
+    max-width: 600px;
+    font-size: 1.1rem;
+    color: var(--anchor-color);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
 }
 
 h1{

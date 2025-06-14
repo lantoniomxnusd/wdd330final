@@ -18,11 +18,44 @@
 <body>
     <div class="wrapper">
         <header class="banner">
-            <h1>Card Matching Game</h1>
+            <div class="header-top">
+                <h1>Card Matching Game</h1>
+            </div>
         </header>
         <main>
-            <div class="gameBoard">
-                <div class="card" data-word="cat" data-index="0">
+            <section class="content">
+                <div class= "instructions">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, rem?</p>
+                </div>
+
+                <div class="controls">
+                    <label for="mode">Mode:</label>
+                    <select id = "mode">
+                        <option value = "unit">Our World</option>
+                        <option value = "category">Category</option>
+                    </select>
+
+                    <label for = "optionSelect">Choose:</label>
+                    <select id ="optionSelect">
+                        <option value = "1-1"> Level 1 Unit 1</option>
+                        <option value = "classroom">Classroom</option>
+                    </select>
+
+                    <button id="startGame">Start Game</button>
+
+                    <div class="game-info">
+                        <span id="matchCount">0/8 Matches</span>
+                        <span id="moveCount">Moves: 0</span>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+            <div id="gameBoard" class="gameBoard"></div>
+                <!-- <div class="card" data-word="cat" data-index="0">
                     <div class="card-inner">
                         <div class="front">Cat</div>
                         <div class="back">?</div>
@@ -53,13 +86,13 @@
                         <div class="back">?</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </main>
         <footer>
             <p>&copy; 2025 Luis Antonio Olivares </p>
             <p id="lastModified"></p>
         </footer>
     </div>
-    <script src="scripts/game.js"></script>
+    <script type="module" src="scripts/game.js"></script>
 </body>
 </html>
