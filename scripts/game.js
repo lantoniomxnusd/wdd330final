@@ -6,7 +6,6 @@ let cards = [];
 let flippedCards = [];
 let matched = [];
 let tries = 0;
-let lockBoard = false;
 
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
