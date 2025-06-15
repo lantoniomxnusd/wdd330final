@@ -167,3 +167,7 @@ h1{
     object-fit: contain;
     display: block;
 }
+
+.hidden {
+  display: none;
+}

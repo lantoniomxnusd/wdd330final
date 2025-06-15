@@ -1,6 +1,11 @@
 import { createCard, shuffle } from "./cards.mjs";
 
 let allWords = [];
+let cards = [];
+let flippedCards = [];
+let matched = [];
+let tries = 0;
+let lockBoard = false;
 
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
@@ -35,13 +40,18 @@ async function setupGame(){
     word: item.word
   }));
 
-  const cards = shuffle ([...imageCards, ...textCards]);
+  cards = shuffle ([...imageCards, ...textCards]);
 
   const board = document.getElementById('gameBoard');
   board.innerHTML = '';
+  flippedCards = [];
+  matched = [];
+  tries = 0;
+  document.getElementById('tries').textContent = tries;
 
   cards.forEach((cardData, index) => {
     const cardElement = createCard(cardData, index);
+    cardElement.addEventListener('click', () => handleCardClick(cardElement));
     board.appendChild(cardElement);
   })
 }
@@ -51,10 +61,20 @@ function populateOptions(){
   const optionSelect = document.getElementById('optionSelect');
   optionSelect.innerHTML = '';
 
-  const unique = allWords.reduce((acc,  word) => {
-    const key = mode === 'unit' ? `${word.level}-${word.unit}` : word.category;
-    if (!acc.includes(key)) acc.push(key);
-    return acc;
+    const unique = allWords.reduce((acc, word) => {
+      let key;
+
+      if (mode === 'unit') {
+        key = `${word.level}-${word.unit}`;
+      }else{
+        key = word.category;
+      }
+
+      if (!acc.includes(key)){
+        acc.push(key)
+      }
+
+      return acc;
   }, []);
 
   unique.forEach(value=> {
@@ -72,7 +92,50 @@ function populateOptions(){
   });
 }
 
+function handleCardClick(card){
+  if (
+    flippedCards.length == 2 ||
+    card.classList.contains('flipped') ||
+    matched.includes(card.dataset.index)
+  ) return;
+
+  card.classList.add('flipped');
+  flippedCards.push(card);
+
+  if (flippedCards.length ===2) {
+    tries ++;
+    document.getElementById('tries').textContent = tries;
+
+    const [card1, card2] = flippedCards;
+    const word1 = card1.dataset.word;
+    const word2 = card2.dataset.word;
+
+    if (word1 === word2){
+      matched.push(card1.dataset.index, card2.dataset.index);
+      flippedCards = [];
+
+      if (matched.length === cards.length){
+        console.log("Game Complete");
+        document.getElementById('playAgainBtn').classList.remove('hidden');
+      }
+    }else {
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          flippedCards = [];
+          lockBoard = false;
+      }, 750);
+    } 
+  }   
+}
+
+
 document.getElementById('mode').addEventListener('change', populateOptions);
 document.getElementById('startGame').addEventListener('click', setupGame);
+
+document.getElementById('playAgainBtn').addEventListener('click', () => {
+  document.getElementById('playAgainBtn').classList.add('hidden');
+  setupGame();
+});
 
 loadData();

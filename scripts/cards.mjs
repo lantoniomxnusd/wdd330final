@@ -27,13 +27,7 @@ export function createCard(cardData, index){
     cardInner.appendChild(back);
     card.appendChild(cardInner);
 
-    card.addEventListener('click', () => {
-        if (!card.classList.contains ('flipped')){
-            card.classList.add('flipped');
-        }else {
-            card.classList.remove('flipped');
-        }
-    });
+    card.addEventListener('click', () => handleCardClick(card));
     return card;
 }
 
