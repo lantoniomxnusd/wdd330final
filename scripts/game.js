@@ -1,5 +1,6 @@
 import { createCard, shuffle } from "./cards.mjs";
 import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
+import { playCorrectSound,playIncorrectSound, playFireworks, playVictory } from "./audio.mjs";
 
 let allWords = [];
 let cards = [];
@@ -114,16 +115,20 @@ function handleCardClick(card){
     if (word1 === word2){
       matched.push(card1.dataset.index, card2.dataset.index);
       playConfetti();
+      playCorrectSound();
       flippedCards = [];
 
 
       if (matched.length === cards.length){
         console.log("Game Complete");
         launchFireworks();
+        playVictory();
+        playFireworks();
         document.getElementById('playAgainBtn').classList.remove('hidden');
       }
     }else {
         shakeCards(card1, card2);
+        playIncorrectSound();
         setTimeout(() => {
           card1.classList.remove('flipped');
           card2.classList.remove('flipped');
