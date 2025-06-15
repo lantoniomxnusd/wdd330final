@@ -1,12 +1,43 @@
 import { createCard, shuffle } from "./cards.mjs";
 import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
 import { playCorrectSound,playIncorrectSound, playFireworks, playVictory } from "./audio.mjs";
+import { translateText } from "./translate.mjs";
 
 let allWords = [];
 let cards = [];
 let flippedCards = [];
 let matched = [];
 let tries = 0;
+
+const defaultTexts = {
+  instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice.",
+  mode: "Mode:",
+  choose: "Choose",
+  tries: "Tries: "
+};
+
+document.getElementById('languageSelect').addEventListener('change', async (e) => {
+  const lang = e.target.value;
+
+  const elements = {
+    instructionsText: 'instructions',
+    modeLabel: 'mode',
+    chooseLabel: 'choose',
+    // triesLabel: 'tries'
+  };
+
+  for (const [id,key] of Object.entries(elements)){
+    const el = document.getElementById(id);
+    if (!el) continue;
+    
+    if(lang === 'en'){
+      el.textContent = defaultTexts[key];
+    } else {
+      const translated = await translateText(defaultTexts[key], lang);
+      el.textContent = translated;
+    }
+  }
+});
 
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
@@ -22,6 +53,8 @@ function filterWords(mode,selected){
     return allWords.filter(word => word.category === selected);
   }
 }
+
+
 
 async function setupGame(){
   // stopFireworks();
@@ -133,7 +166,6 @@ function handleCardClick(card){
           card1.classList.remove('flipped');
           card2.classList.remove('flipped');
           flippedCards = [];
-          lockBoard = false;
       }, 750);
     } 
   }   
@@ -149,6 +181,7 @@ document.getElementById('playAgainBtn').addEventListener('click', () => {
 });
 
 loadData();
+
 
 // document.getElementById('testFireworksBtn').addEventListener('click', () => {
 //   launchFireworks();

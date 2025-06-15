@@ -24,18 +24,28 @@
         </header>
         <main>
             <section class="content">
+                <label for="languageSelect">Instruction Language: </label>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="tr">Turkish</option>
+                    <option value="fr">French</option>
+                    <option value="zh">Chinese</option>
+
+
+                </select>
                 <div class= "instructions">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, rem?</p>
+                    <p id="instructionsText"></p>
                 </div>
 
                 <div class="controls">
-                    <label for="mode">Mode:</label>
-                    <select id = "mode">
+                    <label for="mode" id="modeLabel">Mode:</label>
+                    <select id ="mode">
                         <option value = "unit">Our World</option>
                         <option value = "category">Category</option>
                     </select>
 
-                    <label for = "optionSelect">Choose:</label>
+                    <label for = "optionSelect" id="chooseLabel">Choose:</label>
                     <select id ="optionSelect">
                         <option value = "1-1"> Level 1 Unit 1</option>
                         <option value = "classroom">Classroom</option>
@@ -44,7 +54,7 @@
                     <button id="startGame">Start Game</button>
 
                     <div class="game-info">
-                        <span id="tries">Tries: </span>
+                        <span id="triesLabel">Tries: <span id="tries"></span> </span>
                     </div>
                 </div>
                 <button id="playAgainBtn" class="hidden">Play Again</button>
