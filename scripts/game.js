@@ -1,5 +1,5 @@
 import { createCard, shuffle } from "./cards.mjs";
-import { playConfetti, shakeCards, launchFireworks} from "./animation.mjs";
+import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
 
 let allWords = [];
 let cards = [];
