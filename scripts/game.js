@@ -23,7 +23,7 @@ document.getElementById('languageSelect').addEventListener('change', async (e) =
     instructionsText: 'instructions',
     modeLabel: 'mode',
     chooseLabel: 'choose',
-    // triesLabel: 'tries'
+    // triesLabel: 'triesLabel'
   };
 
   for (const [id,key] of Object.entries(elements)){
@@ -34,7 +34,7 @@ document.getElementById('languageSelect').addEventListener('change', async (e) =
       el.textContent = defaultTexts[key];
     } else {
       const translated = await translateText(defaultTexts[key], lang);
-      el.textContent = translated;
+      el.textContent = translated.translatedText;
     }
   }
 });

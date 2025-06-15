@@ -1,27 +1,24 @@
+const API_KEY = "c4595e8f-324c-4cf9-bf3d-f5cfd146b2a5";
+
 export async function translateText(text, targetLang) {
   try {
-    const res = await fetch('http://localhost:5001https://libretranslate-apyh.onrender.com/translate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("https://libretranslate.com/translate", {
+      method: "POST",
       body: JSON.stringify({
         q: text,
-        source: 'en',
+        source: "en",
         target: targetLang,
-        format: 'text'
-      })
+        format: "text",
+        api_key: API_KEY
+      }),
+      headers: { "Content-Type": "application/json" }
     });
 
     const data = await res.json();
-    console.log('Response:', data); // shows error message if any
-
-    if (res.ok) {
-      return data.translatedText;
-    } else {
-      throw new Error(data.error || 'Translation failed');
-    }
-
-  } catch (err) {
-    console.error('Translation error:', err.message);
-    return text; // fallback
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Translation error:", error);
+    return null;
   }
 }
