@@ -2,6 +2,7 @@ import { createCard, shuffle } from "./cards.mjs";
 import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
 import { playCorrectSound,playIncorrectSound, playFireworks, playVictory } from "./audio.mjs";
 import { translateText } from "./translate.mjs";
+import { gif } from "./giphy.mjs";
 
 let allWords = [];
 let cards = [];
@@ -63,11 +64,28 @@ async function setupGame(){
 
   const words = filterWords(mode, selected);
 
-  const imageCards = words.map(item => ({
-    type: 'image', 
-    content: item.image,
-    word: item.word
-  }))
+  const imageCards = await Promise.all(
+    words.map(asnyc (item) =>{
+      let gifUrl;
+      let finalURl;
+
+      try {
+        gifUrl = await gif(item.word);
+      }
+
+      if (gifUrl && gifUrl.startsWith('http')){
+        finalURl = gifUrl;
+      }else {
+        finalURl = item.image;
+      }
+
+      return {
+        type: 'image';
+        content: finalURl,
+        word: item.word
+      };
+    })
+
 
   const textCards = words.map(item => ({
     type: 'text',

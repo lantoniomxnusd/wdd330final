@@ -37,3 +37,27 @@ export function shuffle(array){
         }
     return array;
 }
+
+
+export async function generateImageCard(item, getGif){
+    let gifUrl;
+    let finalUrl;
+
+    try{
+        gifUrl = await getGif (item.word);
+    }catch (err){
+        console.warn(`Gif didn't fetch the "${item.word}`, err);
+        }
+
+    if (gifUrl && gifUrl.startsWith('http')){
+        finalUrl = gifUrl;
+    }else{
+        finalUrl = item.image;
+    }
+
+    return {
+        type: 'image',
+        content: finalUrl,
+        word: item.word
+    }
+}
