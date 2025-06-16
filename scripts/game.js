@@ -42,7 +42,7 @@ async function setupGame(){
   const mode = document.getElementById('mode').value;
   const selected = document.getElementById('optionSelect').value;
 
-  const words = filterWords(mode, selected).sort(()=>0.5 -Math.random()).slice(0,8);
+  const words = filterWords(mode, selected).sort(()=>0.5 -Math.random()).slice(0,6);
 
   const imageCards = await Promise.all(
     words.map(item => generateImageCard(item, getGif))
@@ -153,6 +153,11 @@ document.getElementById('startGame').addEventListener('click', setupGame);
 document.getElementById('playAgainBtn').addEventListener('click', () => {
   document.getElementById('playAgainBtn').classList.add('hidden');
   setupGame();
+});
+
+document.getElementById('instructionsCurtain').addEventListener('click', () => {
+  const instructions = document.querySelector('.instructions');
+  instructions.classList.toggle('hidden');
 });
 
 loadData();

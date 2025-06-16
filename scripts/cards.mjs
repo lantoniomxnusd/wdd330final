@@ -21,7 +21,7 @@ export function createCard(cardData, index){
 
     const back = document.createElement('div');
     back.classList.add('back');
-    back.textContent = '?';
+
 
     cardInner.appendChild(front);
     cardInner.appendChild(back);
