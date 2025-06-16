@@ -42,7 +42,7 @@ async function setupGame(){
   const mode = document.getElementById('mode').value;
   const selected = document.getElementById('optionSelect').value;
 
-  const words = filterWords(mode, selected);
+  const words = filterWords(mode, selected).sort(()=>0.5 -Math.random()).slice(0,8);
 
   const imageCards = await Promise.all(
     words.map(item => generateImageCard(item, getGif))
