@@ -73,8 +73,7 @@ main {
     font-size: 1rem;
     color: var(--anchor-color);
     text-align: center;
-    padding: 0.5rem;
-    font-family: var(--font-paragraph);
+
 }
 
 .controls {
@@ -86,10 +85,12 @@ main {
     padding: 0.5rem;
 }
 .content {
+    width: 100%;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     text-align: center;
 }
 
@@ -102,12 +103,12 @@ h1{
 
 .gameBoard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 0.5rem;
     width: 100%;
-    max-width: 900px;
-    /* margin: 0 auto; */
-    padding: 1rem;
+    max-width: 600px;
+    flex-grow: 1;
+    padding: 0 0.5rem;
     align-content: start;
     justify-items: center;
     /* max-height: 100%; */
