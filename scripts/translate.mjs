@@ -2,9 +2,11 @@ const API_KEY = "c4595e8f-324c-4cf9-bf3d-f5cfd146b2a5";
 
 export const defaultTexts = {
   instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice.",
-  mode: "Mode:",
-  choose: "Choose",
-  tries: "Tries: "
+  mode: "Mode: ",
+  choose: "Choose: ",
+  tries: "Tries: ",
+  startGame: "Start Game",
+  languageLabel: "Instruction Language: "
 };
 
 export async function translateText(text, targetLang) {
@@ -36,7 +38,9 @@ export async function applyTranslation(lang){
     instructionsText: 'instructions',
     modeLabel: 'mode',
     chooseLabel: 'choose',
-    // triesLabel: 'triesLabel'
+    languageLabel: 'languageLabel',
+    startGame: 'startGame',
+    // triesLabel: 'triesLabel',
   };
 
     for (const [id,key] of Object.entries(elements)){
