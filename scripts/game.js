@@ -1,8 +1,8 @@
 import { createCard, shuffle, generateImageCard, generateTextCard } from "./cards.mjs";
 import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
 import { playCorrectSound,playIncorrectSound, playFireworks, playVictory } from "./audio.mjs";
-import { translateText } from "./translate.mjs";
-import { gif } from "./giphy.mjs";
+import { applyTranslation, } from "./translate.mjs";
+import { getGif} from "./giphy.mjs";
 
 let allWords = [];
 let cards = [];
@@ -10,41 +10,21 @@ let flippedCards = [];
 let matched = [];
 let tries = 0;
 
-const defaultTexts = {
-  instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice.",
-  mode: "Mode:",
-  choose: "Choose",
-  tries: "Tries: "
-};
-
-document.getElementById('languageSelect').addEventListener('change', async (e) => {
-  const lang = e.target.value;
-
-  const elements = {
-    instructionsText: 'instructions',
-    modeLabel: 'mode',
-    chooseLabel: 'choose',
-    // triesLabel: 'triesLabel'
-  };
-
-  for (const [id,key] of Object.entries(elements)){
-    const el = document.getElementById(id);
-    if (!el) continue;
-    
-    if(lang === 'en'){
-      el.textContent = defaultTexts[key];
-    } else {
-      const translated = await translateText(defaultTexts[key], lang);
-      el.textContent = translated.translatedText;
-    }
-  }
-});
-
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
   allWords = await res.json();
   populateOptions(); 
 }
+
+const savedLang = localStorage.getItem('lang') || 'en';
+document.getElementById('languageSelect').value = savedLang;
+applyTranslation(savedLang)
+
+document.getElementById('languageSelect').addEventListener('change', (e) => {
+  const selectedLang = e.target.value;
+  localStorage.setItem('lang', selectedLang);
+  applyTranslation(selectedLang);
+});
 
 function filterWords(mode,selected){
   if (mode === 'unit'){
@@ -65,7 +45,7 @@ async function setupGame(){
   const words = filterWords(mode, selected);
 
   const imageCards = await Promise.all(
-    words.map(item => generateImageCard(item, gif))
+    words.map(item => generateImageCard(item, getGif))
   );
 
   const textCards = words.map(generateTextCard);
