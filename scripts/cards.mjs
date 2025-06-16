@@ -46,7 +46,7 @@ export async function generateImageCard(item, getGif){
     try{
         gifUrl = await getGif (item.word);
     }catch (err){
-        console.warn(`Gif didn't fetch the "${item.word}`, err);
+        console.warn(`Gif didn't fetch the "${item.word}"`, err);
         }
 
     if (gifUrl && gifUrl.startsWith('http')){
@@ -60,4 +60,12 @@ export async function generateImageCard(item, getGif){
         content: finalUrl,
         word: item.word
     }
+}
+
+export function generateTextCard (item){
+    return {
+        type:'text',
+        content: item.word, 
+        word: item.word
+    };
 }
