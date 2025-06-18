@@ -10,22 +10,28 @@ let flippedCards = [];
 let matched = [];
 let tries = 0;
 
+
+// This function fetches Json vocabulary data from the ourworld-master.json file in levels folder.
 async function loadData(){
   const res = await fetch('levels/ourworld-master.json');
   allWords = await res.json();
   populateOptions(); 
 }
 
+// This function loads the saved language preference from the local storage
 const savedLang = localStorage.getItem('lang') || 'en';
 document.getElementById('languageSelect').value = savedLang;
 applyTranslation(savedLang)
 
+
+// This saves the language changes from the user
 document.getElementById('languageSelect').addEventListener('change', (e) => {
   const selectedLang = e.target.value;
   localStorage.setItem('lang', selectedLang);
   applyTranslation(selectedLang);
 });
 
+// This function filters the words by unit or category
 function filterWords(mode,selected){
   if (mode === 'unit'){
     const [level,unit] = selected.match(/\d+/g);
@@ -36,7 +42,7 @@ function filterWords(mode,selected){
 }
 
 
-
+// This function sets up the games. 
 async function setupGame(){
   // stopFireworks();
   const mode = document.getElementById('mode').value;
@@ -44,21 +50,29 @@ async function setupGame(){
 
   const words = filterWords(mode, selected).sort(()=>0.5 -Math.random()).slice(0,6);
 
+// This uses the generateImageCard function to generate an image card
   const imageCards = await Promise.all(
     words.map(item => generateImageCard(item, getGif))
   );
 
+// This does the same but for a text card using generateTextCard
   const textCards = words.map(generateTextCard);
 
+  // this uses the shuffle function to shuffle the cards
   cards = shuffle ([...imageCards, ...textCards]);
 
+
+  // This resets the game for clean gameboard
   const board = document.getElementById('gameBoard');
   board.innerHTML = '';
   flippedCards = [];
   matched = [];
   tries = 0;
+
+// This displays the reset tries
   document.getElementById('tries').textContent = tries;
 
+  // this attaches the textcards and the image cars to the board
   cards.forEach((cardData, index) => {
     const cardElement = createCard(cardData, index);
     cardElement.addEventListener('click', () => handleCardClick(cardElement));
@@ -66,11 +80,13 @@ async function setupGame(){
   })
 }
 
+// This function populates the select options for mode and unit/category
 function populateOptions(){
   const mode = document.getElementById('mode').value;
   const optionSelect = document.getElementById('optionSelect');
   optionSelect.innerHTML = '';
 
+  // Creae a list of unique values for example "level 1 Unit one " 1-1 or by category
     const unique = allWords.reduce((acc, word) => {
       let key;
 
@@ -87,6 +103,7 @@ function populateOptions(){
       return acc;
   }, []);
 
+  // creates option elements for each unique value (cat/unit)
   unique.forEach(value=> {
     const option = document.createElement('option');
     option.value = value;
@@ -102,6 +119,8 @@ function populateOptions(){
   });
 }
 
+
+// This handles the flipping of the cards
 function handleCardClick(card){
   if (
     flippedCards.length == 2 ||
@@ -109,9 +128,11 @@ function handleCardClick(card){
     matched.includes(card.dataset.index)
   ) return;
 
+  // creates the flipped class 
   card.classList.add('flipped');
   flippedCards.push(card);
 
+  // when the two cards are flipped they are compared
   if (flippedCards.length ===2) {
     tries ++;
     document.getElementById('tries').textContent = tries;
@@ -126,7 +147,7 @@ function handleCardClick(card){
       playCorrectSound();
       flippedCards = [];
 
-
+// If all the cards are matched, celebrate and show "play again"
       if (matched.length === cards.length){
         console.log("Game Complete");
         launchFireworks();
@@ -134,6 +155,7 @@ function handleCardClick(card){
         playFireworks();
         document.getElementById('playAgainBtn').classList.remove('hidden');
       }
+      // If they dont match, play playCorrectSound, unflip the 2 cards
     }else {
         // shakeCards(card1, card2);
         playIncorrectSound();

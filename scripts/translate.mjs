@@ -1,5 +1,7 @@
 const API_KEY = "c4595e8f-324c-4cf9-bf3d-f5cfd146b2a5";
 
+// these are the default texts that appear in English on the Website
+// They wil be used to translate to another language and as a backup
 export const defaultTexts = {
   instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice. press the 📜 above to close the instructions.",
   mode: "Mode: ",
@@ -9,6 +11,8 @@ export const defaultTexts = {
   languageLabel: "Instruction Language: "
 };
 
+// This function talks to the translate website and asks it to translate a word or phrase.
+// It sends the english text and language the user wants to translate to. The function waits for the answer and gives it back. 
 export async function translateText(text, targetLang) {
   try {
     const res = await fetch("https://libretranslate.com/translate", {
@@ -32,7 +36,8 @@ export async function translateText(text, targetLang) {
   }
 }
 
-
+// This function changes the text on the website ot he selected language
+// it finds different pars of the site by their ID and replaces the english text with the translation
 export async function applyTranslation(lang){
     const elements = {
     instructionsText: 'instructions',

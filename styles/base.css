@@ -172,7 +172,7 @@ h1{
 }
 
 .back {
-    background-image: url('cardBack/beach.webp');
+    background-image: url('/images/cardBack.webp');
     background-size: cover;
     background-position: center;
     color: white;
