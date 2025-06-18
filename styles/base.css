@@ -70,7 +70,7 @@ main {
 
 .instructions {
     max-width: 600px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--anchor-color);
     text-align: center;
 
@@ -230,3 +230,15 @@ h1{
   pointer-events: none;
 }
 
+#languageSelect{
+    font-size: 1.2rem;
+}
+
+#instructionsCurtain {
+    font-size: 1.5rem;
+    border: none;
+}
+
+#languageLabel {
+    font-size: 1.5rem;
+}

@@ -1,7 +1,7 @@
 const API_KEY = "c4595e8f-324c-4cf9-bf3d-f5cfd146b2a5";
 
 export const defaultTexts = {
-  instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice.",
+  instructions: "Welcome to the Card Match Game! This game is sectioned by Category and Our World. Use Our world for homework assignments. Use Category for random practice. press the 📜 above to close the instructions.",
   mode: "Mode: ",
   choose: "Choose: ",
   tries: "Tries: ",

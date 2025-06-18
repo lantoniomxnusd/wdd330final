@@ -1,5 +1,5 @@
 import { createCard, shuffle, generateImageCard, generateTextCard } from "./cards.mjs";
-import { playConfetti, shakeCards, launchFireworks} from "./animation.js";
+import { playConfetti, launchFireworks} from "./animation.js";
 import { playCorrectSound,playIncorrectSound, playFireworks, playVictory } from "./audio.mjs";
 import { applyTranslation, } from "./translate.mjs";
 import { getGif} from "./giphy.mjs";
