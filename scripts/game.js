@@ -135,7 +135,7 @@ function handleCardClick(card){
         document.getElementById('playAgainBtn').classList.remove('hidden');
       }
     }else {
-        shakeCards(card1, card2);
+        // shakeCards(card1, card2);
         playIncorrectSound();
         setTimeout(() => {
           card1.classList.remove('flipped');
