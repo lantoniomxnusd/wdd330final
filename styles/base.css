@@ -198,7 +198,7 @@ h1{
   display: none;
 }
 
-@keyframes shake {
+/* @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
@@ -208,7 +208,7 @@ h1{
 
 .shake .card-inner {
   animation: shake 0.5s ease-in-out;
-}
+} */
 
 .fireworks-container {
   position: fixed;
