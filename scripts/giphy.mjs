@@ -8,7 +8,7 @@ export async function getGif(word) {
         const data = await res.json();
         return data.data.images.original.url;
     }catch (err){
-        console.log('Giphy error');
+        console.error('Giphy error', err);
         return null;
     }
 }

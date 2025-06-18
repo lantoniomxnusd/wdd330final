@@ -1,4 +1,5 @@
 
+/* global confetti */
 
 let fireworksLaunch = null;
 
@@ -11,15 +12,15 @@ export function playConfetti (){
     });
 }
 
-export function shakeCards(card1, card2){
-    card1.classList.add('shake');
-    card2.classList.add('shake');
+// export function shakeCards(card1, card2){
+//     card1.classList.add('shake');
+//     card2.classList.add('shake');
 
-    setTimeout(() => {
-        card1.classList.remove('shake');
-        card2.classList.remove('shake');
-    }, 500);
-}
+//     setTimeout(() => {
+//         card1.classList.remove('shake');
+//         card2.classList.remove('shake');
+//     }, 500);
+// }
 
 export function launchFireworks(){
     const container = document.getElementById('fireworks');
